@@ -16,7 +16,7 @@ on:
 jobs:
   Running-Liquibase-Action:
     runs-on: ubuntu-latest
-    name: Test Liquibase Action
+    name: Running Liquibase Action
     steps:
       - uses: actions/checkout@v2
       - uses: liquibase/liquibase-github-action@v2
