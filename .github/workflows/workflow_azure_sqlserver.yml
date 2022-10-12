@@ -1,5 +1,4 @@
 # This is a basic workflow to help you get started with Actions
-
 name: Liquibase_Azure_SQL_Server
 
 # Controls when the workflow will run
@@ -15,22 +14,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  Running-Liquibase-Action:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    name: Test Liquibase Action
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - uses: actions/checkout@v2
+      - uses: liquibase/liquibase-github-action@v2
+        with:
+          operation: 'update'          
+          classpath: './'
+          changeLogFile: 'changeLog.xml'
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          url: 'jdbc:sqlserver://parteyserver.database.windows.net:1433;database=parteyDB;user=manish@parteyserver;password=InfoInfo@2022;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;'
