@@ -19,7 +19,7 @@ jobs:
     name: Running Liquibase Action
     steps:
       - uses: actions/checkout@v2
-      - uses: liquibase/liquibase-github-action@v2
+      - uses: liquibase/liquibase-github-action@v7
         with:
           operation: 'update'          
           classpath: './'
